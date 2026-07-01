@@ -6,7 +6,7 @@ test.describe("SauceDemo - run without login", () => {
         await page.goto("/");
     });
 
-    test("Login with invalid credentials", async ({ page }) => {
+    test.only("Login with invalid credentials", async ({ page }) => {
         await page.fill("#user-name", "standard_user");
         await page.fill("#password", "invalid_password");
         await page.click("#login-button");
