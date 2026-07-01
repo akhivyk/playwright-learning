@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("SauceDemo - unloginned", () => {
+test.describe("SauceDemo - run without login", () => {
 
     test.beforeEach(async ({ page }) => {
         await page.goto("/");
