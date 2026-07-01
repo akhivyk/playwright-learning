@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("SauceDemo - unloginned", () => {
+test.describe("SauceDemo - run without login", () => {
 
     test.beforeEach(async ({ page }) => {
         await page.goto("/");
@@ -17,6 +17,16 @@ test.describe("SauceDemo - unloginned", () => {
         await page.click("#login-button");
         await expect(page.locator("[data-test='error']"), 'Error message should be visible when form is empty').toBeVisible();
     });
+
+    test("Negative login test for locked_out_user", async ({ page }) => {
+        await page.fill("#user-name", "locked_out_user");
+        await page.fill("#password", "secret_sauce");
+        await page.click("#login-button");
+        await expect(page.locator("[data-test='error']")).toHaveText(
+            "Epic sadface: Sorry, this user has been locked out."
+        );
+    });
+
 });
 
 test.describe("SauceDemo", () => {
